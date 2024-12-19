@@ -1,32 +1,42 @@
 import { useContext, useState } from "react";
-import { UserContext } from "../UserContext.jsx";
+import { UserContext } from "../components/UserContext.jsx";
 import { Navigate, useParams } from "react-router-dom";
 import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
 import PlacesPage from "./PlacesPage.jsx";
-import AccountNav from "../AccountNav.jsx";
+import AccountNav from "../components/AccountNav.jsx";
+
 export default function ProfilePage() {
   const { ready, user, setUser } = useContext(UserContext);
+
   const [redirect, setRedirect] = useState(null);
+
   const { pathname } = useLocation();
+
   let subpage = pathname.split("/")?.[2];
+
   if (subpage === undefined) {
     subpage = "profile";
   }
+
   async function logout() {
     await axios.post("/logout");
     setRedirect("/");
     setUser(null);
   }
+
   if (!ready) {
     return "Loading....";
   }
+
   if (ready && !user && !redirect) {
     return <Navigate to={"/login"} />;
   }
+
   if (redirect) {
     return <Navigate to={redirect} />;
   }
+
   return (
     <div>
       <AccountNav />

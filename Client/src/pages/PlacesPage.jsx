@@ -2,7 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import PlacesFormPage from "./PlacesFormPage.jsx";
 import AccountNav from "../AccountNav.jsx";
 import { useEffect, useState } from "react";
-import PlaceImg from "../PlaceImg";
+import PlaceImg from "../components/PlaceImg.jsx";
 import axios from "axios";
 
 export default function PlacesPage() {
